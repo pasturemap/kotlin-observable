@@ -5,7 +5,7 @@ import kotlin.reflect.KProperty
 /**
  * Created by joseph on 12/2/16.
  */
-class ConstantObservableProperty<T>(override val value: T) : ObservableProperty<T> {
+class ConstantObservableProperty<T>(override var value: T) : ObservableProperty<T> {
     override val size: Int
         get() = 0
 
