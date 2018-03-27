@@ -241,6 +241,7 @@ class ObservableListFlatMapping<S, E>(val source: ObservableList<S>, val mapper:
     fun subListenerSet(itemContainingList: S) = ObservableListListenerSet<E>(
             onAddListener = { item, index ->
                 val myIndex = source.indexOf(itemContainingList)
+                // Perform operation only if source contains itemContainingList
                 if (myIndex != -1) {
                     val fullIndex = getIndex(myIndex to index)
                     modifyIndiciesAfter(myIndex, 1)
@@ -250,6 +251,7 @@ class ObservableListFlatMapping<S, E>(val source: ObservableList<S>, val mapper:
             },
             onRemoveListener = { item, index ->
                 val myIndex = source.indexOf(itemContainingList)
+                // Perform operation only if source contains itemContainingList
                 if (myIndex != -1) {
                     val fullIndex = getIndex(myIndex to index)
                     modifyIndiciesAfter(myIndex, -1)
@@ -259,6 +261,7 @@ class ObservableListFlatMapping<S, E>(val source: ObservableList<S>, val mapper:
             },
             onMoveListener = { item, oldIndex, index ->
                 val myIndex = source.indexOf(itemContainingList)
+                // Perform operation only if source contains itemContainingList
                 if (myIndex != -1) {
                     val oldTotalIndex = getIndex(myIndex to oldIndex)
                     val newTotalIndex = getIndex(myIndex to index)
@@ -268,6 +271,7 @@ class ObservableListFlatMapping<S, E>(val source: ObservableList<S>, val mapper:
             },
             onChangeListener = { old, item, index ->
                 val myIndex = source.indexOf(itemContainingList)
+                // Perform operation only if source contains itemContainingList
                 if (myIndex != -1) {
                     val fullIndex = getIndex(myIndex to index)
                     onChange.runAll(old, item, fullIndex)
@@ -276,6 +280,7 @@ class ObservableListFlatMapping<S, E>(val source: ObservableList<S>, val mapper:
             },
             onReplaceListener = { list ->
                 val myIndex = source.indexOf(itemContainingList)
+                // Perform operation only if source contains itemContainingList
                 if (myIndex != -1) {
                     onTotalItemRemove(itemContainingList, myIndex)
                     onTotalItemAdd(itemContainingList, myIndex)
