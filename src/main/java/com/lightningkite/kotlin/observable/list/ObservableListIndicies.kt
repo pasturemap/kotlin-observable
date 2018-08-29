@@ -18,7 +18,7 @@ abstract class ObservableListIndicies<E>(val source: ObservableList<E>) : Observ
     override val onRemove = HashSet<(E, Int) -> Unit>()
 
     override fun replace(list: List<E>) {
-        throw UnsupportedOperationException()
+        source.replace(list)
     }
 
     override fun set(index: Int, element: E): E {
